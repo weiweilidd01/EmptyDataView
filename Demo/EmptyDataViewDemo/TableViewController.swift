@@ -55,6 +55,7 @@ class TableViewController: UITableViewController {
             }
             
         case .search:
+            
             tableView.emptyDataView(type: .search, hasData: res)
             
         case .todo:
