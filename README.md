@@ -29,5 +29,5 @@
 
 #### 3.更多类型展示
 
-<img src="https://upload-images.jianshu.io/upload_images/2026287-e5f5dbdda7255bf3.gif?imageMogr2/auto-orient/strip" width=200 height=400 />
+<img src="https://upload-images.jianshu.io/upload_images/2026287-e5f5dbdda7255bf3.gif?imageMogr2/auto-orient/strip" width=200 height=400/>
         
