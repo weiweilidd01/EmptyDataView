@@ -8,14 +8,34 @@
 
 import UIKit
 
+// MARK: - 注册时：一定要从0依次升序，否则出问题
+extension EmptyDataConfig.Name {
+    static let common = EmptyDataConfig.Name(rawValue: 0)
+    static let license = EmptyDataConfig.Name(rawValue: 1)
+    static let activity = EmptyDataConfig.Name(rawValue: 2)
+    static let integral = EmptyDataConfig.Name(rawValue: 3)
+    static let wifi = EmptyDataConfig.Name(rawValue: 4)
+}
+
 class TableViewController: UITableViewController {
 
-    public var dataType: EmptyDataType = .common
+    public var dataType = 0
     
     var rows:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         rows = 0
+        
+        /// 注册EmptydataSources， 在实际使用中，在AppdDelegate中提前注册好
+        let config1 = EmptyDataConfig(name: EmptyDataConfig.Name.common, title: "暂无内容", image: UIImage(named: "blankpage_common"))
+        let config2 = EmptyDataConfig(name: EmptyDataConfig.Name.license, title: "您目前没有绑定任何车牌", image: UIImage(named: "blankpage_search"))
+        let config3 = EmptyDataConfig(name: EmptyDataConfig.Name.activity, title: "暂无活动", image: UIImage(named: "blankpage_activity"))
+        let config4 = EmptyDataConfig(name: EmptyDataConfig.Name.integral, title: "暂无卡券", image: UIImage(named: "blankpage_integral"))
+        let config5 = EmptyDataConfig(name: EmptyDataConfig.Name.wifi, title: "oops!沒有网络讯号", image: UIImage(named: "blankpage_wifi"))
+        let arr = [config1, config2, config3, config4, config5]
+        EmptyDataManager.shared.dataSources = arr
+        
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         tableView.tableFooterView = UIView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -28,52 +48,31 @@ class TableViewController: UITableViewController {
     }
     
     func asyncAfter() {
-        rows = 0
-        let res = rows == 0 ? false : true
-        
         switch dataType {
-        case .common:
-            tableView.emptyDataView(type: .common, hasData: res)
-            
-        case .license:
-            tableView.emptyDataView(type: .license, hasData: res, showButton: true, btnTitle: "添加") {[weak self] in
+        case 0:
+            tableView.emptyDataView(name: EmptyDataConfig.Name.common, hasData: false)
+            break
+        case 1:
+            tableView.emptyDataView(name: EmptyDataConfig.Name.license, hasData: false, showButton: true, btnTitle: "添加") { [weak self] in
                 self?.clickAction()
             }
-            
-        case .activity:
-            tableView.emptyDataView(type: .activity, hasData: res)
-         
-        case .integral:
-            tableView.emptyDataView(type: .integral, hasData: res)
-            
-        case .message:
-            tableView.emptyDataView(type: .message, hasData: res)
-            
-        case .wifi:
-            tableView.emptyDataView(type: .wifi, hasData: res, showButton: true, btnTitle: "点击重试") {[weak self] in
-                self?.clickAction()
+            break
+        case 2:
+            tableView.emptyDataView(name: EmptyDataConfig.Name.activity, hasData: false)
+            break
+        case 3:
+            tableView.emptyDataView(name: EmptyDataConfig.Name.integral, hasData: false)
+            break
+        case 4:
+            tableView.emptyDataView(name: EmptyDataConfig.Name.wifi, hasData: false, showButton: true, btnTitle: "点击重试") {[weak self] in
+                 self?.clickAction()
             }
-            
-        case .search:
-            
-            tableView.emptyDataView(type: .search, hasData: res)
-            
-        case .todo:
-            tableView.emptyDataView(type: .todo, hasData: res)
-            
-        case .comment:
-            tableView.emptyDataView(type: .comment, hasData: res)
-            
-        case .like:
-            tableView.emptyDataView(type: .like, hasData: res)
-            
-        case .custom:
-            //emptyDataDelegate一定要设置在加载前面
-            tableView.emptyDataDelegate = self
-            tableView.emptyDataView(type: .custom, hasData: res, offSet: CGPoint(x: 0, y:-100))
-    
+            break
+        default:
+            break
         }
 
+        rows = 0
         tableView.reloadData()
     }
     
@@ -85,7 +84,6 @@ class TableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -102,11 +100,4 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-}
-
-extension TableViewController: EmptyDataDelegate {
-    func emptyData(_ view: UIView) -> EmptyDataConfig {
-        let config = EmptyDataConfig(title: "我是自定义", image: UIImage(named: "blankpage_common"))
-        return config
-    }
 }

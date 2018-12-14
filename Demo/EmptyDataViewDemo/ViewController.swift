@@ -10,73 +10,45 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     @IBAction func nodataAction(_ sender: Any) {
         let vc = TableViewController()
-        vc.dataType = .common
+        vc.dataType = 0
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func licenseAction(_ sender: Any) {
         let vc = TableViewController()
-        vc.dataType = .license
+        vc.dataType = 1
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func activityAction(_ sender: Any) {
         let vc = TableViewController()
-        vc.dataType = .activity
+        vc.dataType = 2
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func integralAction(_ sender: Any) {
         let vc = TableViewController()
-        vc.dataType = .integral
+        vc.dataType = 3
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func messageAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .message
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+   
     @IBAction func noNetAction(_ sender: Any) {
         let vc = TableViewController()
-        vc.dataType = .wifi
+        vc.dataType = 4
         navigationController?.pushViewController(vc, animated: true)
     }
-    @IBAction func searchAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .search
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func todoAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .todo
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func commentAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .comment
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    @IBAction func likeAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .like
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    @IBAction func customAction(_ sender: Any) {
-        let vc = TableViewController()
-        vc.dataType = .custom
-        navigationController?.pushViewController(vc, animated: true)
-    }
+
 }
 

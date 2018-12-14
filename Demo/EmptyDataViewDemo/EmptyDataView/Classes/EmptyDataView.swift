@@ -9,43 +9,53 @@
 import SnapKit
 import UIKit
 
+
+/// EmptyDataManager用户管理dataSources
+public class EmptyDataManager: NSObject {
+    public static let shared = EmptyDataManager()
+    public var dataSources: [EmptyDataConfig]?
+}
+
+
 public struct EmptyDataConfig {
     public var title: String?
     public var image: UIImage?
-    
-    public init(title: String?, image: UIImage?) {
+    // Name的值请从0开始
+    public var  name: EmptyDataConfig.Name
+    public init(name: EmptyDataConfig.Name, title: String?, image: UIImage?) {
+        self.name = name
         self.title = title
         self.image = image
     }
 }
 
-public protocol EmptyDataDelegate: NSObjectProtocol {
-    func emptyData(_ view: UIView) -> EmptyDataConfig
-}
-
-public enum EmptyDataType {
-    case common
-    case search
-    case wifi
-    case message
-    case activity
-    case integral
-    case license
-    case todo
-    case comment
-    case like
-    case custom
+extension EmptyDataConfig {
+    // Name的值请从0开始
+    public struct Name : Hashable, Equatable, RawRepresentable  {
+        public var rawValue: Int
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+    }
 }
 
 public typealias  EmptyDataClickBlock = (() -> Void)?
 
 extension UIView {
-    
-   
     private struct EmptyDataKey {
         static var managerKey = "EmptyDateViewKey"
-        static var emptyDataDelegateKey = "emptyDataDelegateKey"
+        static var emptyDataSources = "emptyDataSources"
     }
+    
+    public var emptyDataSources: [EmptyDataConfig]? {
+        set (value) {
+            objc_setAssociatedObject(self, &EmptyDataKey.emptyDataSources, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            return objc_getAssociatedObject(self, &EmptyDataKey.emptyDataSources) as? [EmptyDataConfig]
+        }
+    }
+
     
     fileprivate var blankView: EmptyDataView? {
         set (value) {
@@ -53,20 +63,6 @@ extension UIView {
         }
         get {
             return objc_getAssociatedObject(self, &EmptyDataKey.managerKey) as? EmptyDataView
-        }
-    }
-    
-    public weak var emptyDataDelegate: EmptyDataDelegate? {
-        set (value) {
-            if blankView == nil {
-                blankView = EmptyDataView(frame: bounds)
-                blankView?.isUserInteractionEnabled = true
-                blankView?.delegate = value
-            }
-            objc_setAssociatedObject(self, &EmptyDataKey.emptyDataDelegateKey, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        get {
-            return objc_getAssociatedObject(self, &EmptyDataKey.emptyDataDelegateKey) as? EmptyDataDelegate
         }
     }
     
@@ -90,24 +86,25 @@ extension UIView {
     ///   - btnTitle: 按钮的title
     ///   - hasData: 是否有数据
     ///   - clickAction: 按钮点击回调
-    public func emptyDataView(type: EmptyDataType = .common,
+    public func emptyDataView(name: EmptyDataConfig.Name,
                               hasData: Bool,
-                             offSet: CGPoint = CGPoint.zero,
-                             showImage: Bool = true,
-                             showButton: Bool = false,
-                             btnTitle: String = "确定",
-                             clickAction: EmptyDataClickBlock = nil) {
-        guard !hasData else {
+                              offSet: CGPoint = CGPoint.zero,
+                              showImage: Bool = true,
+                              showButton: Bool = false,
+                              btnTitle: String = "确定",
+                              clickAction: EmptyDataClickBlock = nil) {
+        guard !hasData,
+            let dataSources = EmptyDataManager.shared.dataSources else {
             cleanBlankView()
             setScrollEnabled(true)
             return
         }
+        
         if blankView == nil {
             blankView = EmptyDataView(frame: bounds)
             blankView?.isUserInteractionEnabled = true
         }
         blankView?.isHidden = false
-        
         blankView?.backgroundColor = backgroundColor
         if let blankView = blankView {
             blankPageContainer.insertSubview(blankView, at: 0)
@@ -120,13 +117,14 @@ extension UIView {
             clickAction?()
         }
         
-        blankView?.config(type: type,
-                      offSet: offSet,
-                      showImage: showImage,
-                      showButton: showButton,
-                      btnTitle: btnTitle,
-                      hasData: hasData,
-                      clickAction: result)
+        blankView?.config(name: name,
+                          sources: dataSources,
+                          offSet: offSet,
+                          showImage: showImage,
+                          showButton: showButton,
+                          btnTitle: btnTitle,
+                          hasData: hasData,
+                          clickAction: result)
     }
     
     private func cleanBlankView() {
@@ -143,7 +141,6 @@ extension UIView {
 }
 
 public class EmptyDataView: UIView {
-    fileprivate weak var delegate: EmptyDataDelegate?
     public let blankImage = UIImageView(frame: CGRect.zero)
     public let tipLabel = UILabel(frame: CGRect.zero)
     public let operateButton = UIButton(type: .custom)
@@ -158,7 +155,14 @@ public class EmptyDataView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func config(type: EmptyDataType, offSet: CGPoint, showImage: Bool, showButton: Bool, btnTitle: String, hasData: Bool, clickAction: EmptyDataClickBlock) {
+    fileprivate func config(name: EmptyDataConfig.Name,
+                            sources: [EmptyDataConfig],
+                            offSet: CGPoint,
+                            showImage: Bool,
+                            showButton: Bool,
+                            btnTitle: String,
+                            hasData: Bool,
+                            clickAction: EmptyDataClickBlock) {
         guard !hasData else {
             removeFromSuperview()
             return
@@ -196,66 +200,21 @@ public class EmptyDataView: UIView {
         operateButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         operateButton.addTarget(self, action: #selector(clickBtnAction), for: .touchUpInside)
         clickBlock = clickAction
-        updateContent(type: type)
+        updateContent(name: name, dataSources: sources)
     }
     
     @objc func clickBtnAction() {
         clickBlock?()
     }
     
-    private func updateContent(type: EmptyDataType) {
-        var image: UIImage? = self.image(ForName: "blankpage_common")
-        var title = ""
-        switch type {
-        case .common:
-            image = self.image(ForName: "blankpage_common")
-            title = NSLocalizedString("暂无内容", comment: "")
-        case .license:
-            image = self.image(ForName: "blankpage_search")
-            title = NSLocalizedString("您目前没有绑定任何车牌", comment: "")
-            operateButton.setTitle(NSLocalizedString("添加", comment: ""), for: .normal)
-        case .activity:
-            image = self.image(ForName: "blankpage_activity")
-            title = NSLocalizedString("暂无活动", comment: "")
-        case .integral:
-            image = self.image(ForName: "blankpage_integral")
-            title = NSLocalizedString("暂无卡券", comment: "")
-        case .message:
-            image = self.image(ForName: "blankpage_message")
-            title = NSLocalizedString("这里还没有任何消息哦", comment: "")
-        case .wifi:
-            image = self.image(ForName: "blankpage_wifi")
-            title = NSLocalizedString("oops!沒有网络讯号", comment: "")
-        case .search:
-            image = self.image(ForName: "blankpage_search")
-            title = NSLocalizedString("没有搜寻结果", comment: "")
-        case .todo:
-            image = self.image(ForName: "blankpage_todo")
-            title = NSLocalizedString("该功能暂未上线，敬请期待！", comment: "")
-        case .comment:
-            image = self.image(ForName: "iconNoComment")
-            title = NSLocalizedString("没有收到评论哦~", comment: "")
-        case .like:
-            image = self.image(ForName: "iconNoLike")
-            title = NSLocalizedString("没有收到赞哦~", comment: "")
-        case .custom:
-            let config = delegate?.emptyData(self)
-            image = config?.image
-            title = config?.title ?? ""
-            break
-  
+    private func updateContent(name: EmptyDataConfig.Name, dataSources: [EmptyDataConfig]) {
+        print(name.rawValue)
+        if name.rawValue < dataSources.count && name.rawValue >= 0 {
+            let config = dataSources[name.rawValue]
+            blankImage.image = config.image
+            tipLabel.text = config.title
+            return
         }
-        blankImage.image = image
-        tipLabel.text = title
     }
     
-    fileprivate func image(ForName name: String) -> UIImage? {
-        if let path = Bundle(for: EmptyDataView.classForCoder()).path(forResource: "EmptyDataView", ofType: "bundle"),
-            let bundle = Bundle(path: path),
-            let image = UIImage(named: name, in: bundle, compatibleWith: nil)
-        {
-            return image
-        }
-        return nil
-    }
 }

@@ -17,7 +17,6 @@
 		CEE2255221BF74C90038DAF3 /* EmptyDataViewDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2255121BF74C90038DAF3 /* EmptyDataViewDemoUITests.swift */; };
 		CEE2256521BF943D0038DAF3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2256421BF943D0038DAF3 /* TableViewController.swift */; };
 		CEE2256B21BFB10D0038DAF3 /* EmptyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2256821BFB10D0038DAF3 /* EmptyDataView.swift */; };
-		CEE2256C21BFB10D0038DAF3 /* EmptyDataView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEE2256A21BFB10D0038DAF3 /* EmptyDataView.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 		CEE2255321BF74C90038DAF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEE2256421BF943D0038DAF3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		CEE2256821BFB10D0038DAF3 /* EmptyDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataView.swift; sourceTree = "<group>"; };
-		CEE2256A21BFB10D0038DAF3 /* EmptyDataView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmptyDataView.bundle; sourceTree = "<group>"; };
 		CF9EA88036CF9DCBF8E39AB1 /* Pods-EmptyDataViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyDataViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmptyDataViewDemo/Pods-EmptyDataViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D9D5E7D53DE2BAFED2DE929A /* Pods_EmptyDataViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyDataViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				CEE2256721BFB10D0038DAF3 /* Classes */,
-				CEE2256921BFB10D0038DAF3 /* Assets */,
 			);
 			path = EmptyDataView;
 			sourceTree = "<group>";
@@ -155,14 +152,6 @@
 				CEE2256821BFB10D0038DAF3 /* EmptyDataView.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		CEE2256921BFB10D0038DAF3 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				CEE2256A21BFB10D0038DAF3 /* EmptyDataView.bundle */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		CFA1F22B3D6AB5B08A1480B5 /* Frameworks */ = {
@@ -288,7 +277,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE2256C21BFB10D0038DAF3 /* EmptyDataView.bundle in Resources */,
 				CEE2253C21BF74C90038DAF3 /* LaunchScreen.storyboard in Resources */,
 				CEE2253921BF74C90038DAF3 /* Assets.xcassets in Resources */,
 				CEE2253721BF74C80038DAF3 /* Main.storyboard in Resources */,
@@ -543,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH7563Z32V;
 				INFOPLIST_FILE = EmptyDataViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -561,6 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH7563Z32V;
 				INFOPLIST_FILE = EmptyDataViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

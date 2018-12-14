@@ -61,107 +61,29 @@
                                     <action selector="integralAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ScO-VR-yTd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-dQ-3B6">
-                                <rect key="frame" x="111" y="276" width="153" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="153" id="Ydz-nT-gR3"/>
-                                    <constraint firstAttribute="height" constant="30" id="lWs-7X-670"/>
-                                </constraints>
-                                <state key="normal" title="这里还没有任何消息哦"/>
-                                <connections>
-                                    <action selector="messageAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bSz-ur-J9M"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNx-Tn-YYv">
-                                <rect key="frame" x="129" y="318" width="131" height="30"/>
+                                <rect key="frame" x="137" y="278" width="131" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HTG-2M-EyX"/>
-                                    <constraint firstAttribute="width" constant="131" id="WgP-FH-Avp"/>
+                                    <constraint firstAttribute="height" constant="30" id="Pdb-5v-kaP"/>
+                                    <constraint firstAttribute="width" constant="131" id="Qgw-kZ-xaL"/>
                                 </constraints>
                                 <state key="normal" title="oops!沒有网络讯号"/>
                                 <connections>
                                     <action selector="noNetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4o1-mH-mxP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-pU-dDS">
-                                <rect key="frame" x="149" y="363" width="92" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="EnB-oV-BIJ"/>
-                                    <constraint firstAttribute="width" constant="92" id="KQB-CT-NWK"/>
-                                </constraints>
-                                <state key="normal" title="没有搜寻结果"/>
-                                <connections>
-                                    <action selector="searchAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wI2-SI-ZsM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nm-0u-kaE">
-                                <rect key="frame" x="96" y="411" width="199" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="199" id="OiG-xU-CYU"/>
-                                    <constraint firstAttribute="height" constant="30" id="p9N-qQ-yGn"/>
-                                </constraints>
-                                <state key="normal" title="该功能暂未上线，敬请期待！"/>
-                                <connections>
-                                    <action selector="todoAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vbn-Is-vT4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-o7-Qsb">
-                                <rect key="frame" x="144" y="462" width="117" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="117" id="CWi-fh-gcw"/>
-                                    <constraint firstAttribute="height" constant="30" id="cpS-Q7-kxa"/>
-                                </constraints>
-                                <state key="normal" title="没有收到评论哦~"/>
-                                <connections>
-                                    <action selector="commentAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FTb-jl-7mC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpq-gM-XOx">
-                                <rect key="frame" x="152" y="507" width="102" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="LRp-6V-Olh"/>
-                                    <constraint firstAttribute="width" constant="102" id="fD2-3L-vu2"/>
-                                </constraints>
-                                <state key="normal" title="没有收到赞哦~"/>
-                                <connections>
-                                    <action selector="likeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z5A-uh-3f5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxm-cq-m8S">
-                                <rect key="frame" x="156" y="552" width="77" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="itw-MK-BhD"/>
-                                    <constraint firstAttribute="height" constant="30" id="zNp-OI-Weu"/>
-                                </constraints>
-                                <state key="normal" title="自定义提示"/>
-                                <connections>
-                                    <action selector="customAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L7s-77-zGC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dxm-cq-m8S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="0o4-fT-5Ui"/>
                             <constraint firstItem="tk1-YV-dPz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="6c8-gG-KWj"/>
                             <constraint firstItem="JdG-lR-Ncb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="8qn-M3-wON"/>
                             <constraint firstItem="2P5-dC-wdo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="118" id="9Nx-bC-SSj"/>
-                            <constraint firstItem="hBL-dQ-3B6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="111" id="AR0-rq-fRg"/>
-                            <constraint firstItem="dxm-cq-m8S" firstAttribute="top" secondItem="rpq-gM-XOx" secondAttribute="bottom" constant="15" id="AlE-Be-rYm"/>
-                            <constraint firstItem="8nm-0u-kaE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="DdG-Ae-V0h"/>
-                            <constraint firstItem="rpq-gM-XOx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="152" id="FCY-HW-hqj"/>
-                            <constraint firstItem="hBL-dQ-3B6" firstAttribute="top" secondItem="l2P-sh-2cI" secondAttribute="bottom" constant="23" id="HJY-QW-TLJ"/>
                             <constraint firstItem="l2P-sh-2cI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="IUC-Ah-R1I"/>
-                            <constraint firstItem="cJk-pU-dDS" firstAttribute="top" secondItem="nNx-Tn-YYv" secondAttribute="bottom" constant="15" id="LTa-VE-shh"/>
-                            <constraint firstItem="dMc-o7-Qsb" firstAttribute="top" secondItem="8nm-0u-kaE" secondAttribute="bottom" constant="21" id="Noq-cv-kYR"/>
+                            <constraint firstItem="nNx-Tn-YYv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="Pgg-dA-IUl"/>
                             <constraint firstItem="2P5-dC-wdo" firstAttribute="top" secondItem="tk1-YV-dPz" secondAttribute="bottom" constant="20" id="Q3W-se-kI6"/>
                             <constraint firstItem="JdG-lR-Ncb" firstAttribute="top" secondItem="2P5-dC-wdo" secondAttribute="bottom" constant="8" id="bSr-3i-zvq"/>
                             <constraint firstItem="tk1-YV-dPz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="cbp-Cq-cN2"/>
-                            <constraint firstItem="nNx-Tn-YYv" firstAttribute="top" secondItem="hBL-dQ-3B6" secondAttribute="bottom" constant="12" id="eN0-dI-Drv"/>
-                            <constraint firstItem="8nm-0u-kaE" firstAttribute="top" secondItem="cJk-pU-dDS" secondAttribute="bottom" constant="18" id="fcl-Wp-FK9"/>
-                            <constraint firstItem="rpq-gM-XOx" firstAttribute="top" secondItem="dMc-o7-Qsb" secondAttribute="bottom" constant="15" id="jLH-go-4ZB"/>
-                            <constraint firstItem="nNx-Tn-YYv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="q5b-8Z-gnR"/>
-                            <constraint firstItem="cJk-pU-dDS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="149" id="qzw-kg-sEn"/>
-                            <constraint firstItem="dMc-o7-Qsb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="144" id="z0S-qQ-sB2"/>
+                            <constraint firstItem="nNx-Tn-YYv" firstAttribute="top" secondItem="l2P-sh-2cI" secondAttribute="bottom" constant="25" id="kCw-NP-pP8"/>
                             <constraint firstItem="l2P-sh-2cI" firstAttribute="top" secondItem="JdG-lR-Ncb" secondAttribute="bottom" constant="16" id="zD6-8t-snF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
